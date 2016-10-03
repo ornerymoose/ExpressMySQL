@@ -1,0 +1,31 @@
+html
+	head
+		title Welcome
+		script(type='text/javascript', src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js')
+		script(type='text/javascript', src='javascripts/users.js')
+	body
+		h3 Enter a user's info to enter into the database:
+		input#user-name(type='text', name='name', placeholder='Enter Name')
+		br
+		br
+		input#user-email(type='text', name='email', placeholder='Enter Email')
+		br
+		br
+		input#user-age(type='text', name='age', placeholder='Enter Age')
+		br
+		br
+		input#user-submit(type='submit')
+		p#output
+		p#latest_output
+		table(class='table')
+			thead
+				tr
+					th Name
+					th Email
+					th Age
+			tbody
+				each user, i in users
+					tr
+						td=user.name
+						td=user.email
+						td=user.age

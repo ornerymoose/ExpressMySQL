@@ -1,6 +1,7 @@
 //modules
 
 var express = require('express');
+var path = require('path');
 var app = express();
 var mysql   = require('mysql');
 var bodyParser = require('body-parser');
@@ -30,8 +31,15 @@ connection.query('CREATE DATABASE IF NOT EXISTS test_express', function (err) {
     });
 });
 
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.get('/', function(req, res){
-	res.sendFile(__dirname + '/index.html');
+	//res.sendFile(__dirname + '/index.html');
+	connection.query('SELECT * FROM users', function(err, rows){
+ 		res.render('users', {users : rows});
+ 	});
 });
 
 app.post('/users', function (req, res) {
