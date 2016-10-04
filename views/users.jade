@@ -26,11 +26,12 @@ html
 				tbody
 					each user, i in users
 						tr
+							input.item-id(type='hidden', value=user.pkid)
 							td=user.name
 							td=user.email
 							td=user.age
 							td
-								input.btn.btn-danger(type='button', value='Delete Row')
+								input.delete-item.btn.btn-danger(type='button', value='Delete Row')
 			script(type='text/javascript', src='javascripts/jquery.min.js')
 			script(type='text/javascript', src='javascripts/users.js')
 			script(type='text/javascript', src='javascripts/bootstrap.min.js')
