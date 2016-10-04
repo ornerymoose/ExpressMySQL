@@ -17,6 +17,7 @@ html
 			input#user-submit.btn.btn-default(type='submit')
 			p#output
 			p#latest_output
+			p.test-div(style='border: 1px solid red; height: 50px; width: 50px; background-color: yellow; display: none')
 			table(class='table')
 				thead
 					tr
@@ -26,7 +27,7 @@ html
 				tbody
 					each user, i in users
 						tr
-							input.item-id(type='hidden', value=user.pkid)
+							input(type='hidden', value=user.pkid)
 							td=user.name
 							td=user.email
 							td=user.age

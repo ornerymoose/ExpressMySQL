@@ -35,6 +35,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+//read
 app.get('/', function(req, res){
 	//res.sendFile(__dirname + '/index.html');
 	connection.query('SELECT * FROM users', function(err, rows){
@@ -42,12 +44,35 @@ app.get('/', function(req, res){
  	});
 });
 
+
+//create
 app.post('/users', function (req, res) {
     connection.query('insert into users (name, email, age) values ("' + req.body.name + '", "' + req.body.email + '", "' + req.body.age + '")' , function (err, result) {
             if (err) throw err;
             res.send('User added to database with the following ID: ' + result.insertId);
         }
     );
+});
+
+
+//delete
+app.post('/:id', function (req, res) {
+    var id = req.params.id;
+    var isAjaxRequest = req.xhr;
+    console.log("isAjaxRequest: " + isAjaxRequest);
+    console.log("ID is: " + id);
+    connection.query('delete from users where pkid= ?', id, function(err, result){
+        if (err){
+            throw err;
+        }
+        console.log('Deleted ' + result.affectedRows + ' row');
+        var response = {
+            status  : 200,
+            success : 'Updated Successfully'
+        }
+
+        res.end(JSON.stringify(response));
+    })
 });
 
 app.listen(3000);

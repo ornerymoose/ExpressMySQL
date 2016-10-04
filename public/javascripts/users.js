@@ -1,8 +1,4 @@
 $(document).ready(function () {
-    $(".delete-item").click(function(){
-        var row_id = $(this).parents('tr').find('input:hidden').val();
-        console.log("row_id: " + row_id);
-    });
     $('#user-submit').click(function () {
         var payload = {
             name: $('#user-name').val(),
@@ -20,6 +16,23 @@ $(document).ready(function () {
             data: JSON.stringify(payload),
             success: function(result){
                  $(".table").append("<tr><td>"+payload.name+"</td><td>"+payload.email+"</td><td>"+payload.age+"</td></tr>");
+            }
+        });
+    });
+    
+    $(".delete-item").click(function(){
+        var tr = $(this).closest('tr');
+        var id = $(this).parents('tr').find('input:hidden').val();
+        console.log("row_id: " + id);
+        //console.log("info var: " + info);
+        $.ajax({
+            datatype: "json", 
+            type: "POST",
+            url: "/" + id,
+            success: function(data, statusText, jqXHR){
+                console.log("DATA: " + data);
+                console.log("Status Text: " + statusText);
+                tr.remove();
             }
         });
     });
