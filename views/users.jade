@@ -1,31 +1,36 @@
 html
 	head
-		title Welcome
-		script(type='text/javascript', src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js')
-		script(type='text/javascript', src='javascripts/users.js')
+		title CRUD Application with AJAX
+		link(href='stylesheets/bootstrap.min.css', rel='stylesheet')
 	body
-		h3 Enter a user's info to enter into the database:
-		input#user-name(type='text', name='name', placeholder='Enter Name')
-		br
-		br
-		input#user-email(type='text', name='email', placeholder='Enter Email')
-		br
-		br
-		input#user-age(type='text', name='age', placeholder='Enter Age')
-		br
-		br
-		input#user-submit(type='submit')
-		p#output
-		p#latest_output
-		table(class='table')
-			thead
-				tr
-					th Name
-					th Email
-					th Age
-			tbody
-				each user, i in users
+		.container
+			h3 Enter a user's info to enter into the database:
+			input#user-name.form-control(type='text', name='name', placeholder='Enter Name')
+			br
+			br
+			input#user-email.form-control(type='text', name='email', placeholder='Enter Email')
+			br
+			br
+			input#user-age.form-control(type='text', name='age', placeholder='Enter Age')
+			br
+			br
+			input#user-submit.btn.btn-default(type='submit')
+			p#output
+			p#latest_output
+			table(class='table')
+				thead
 					tr
-						td=user.name
-						td=user.email
-						td=user.age
+						th Name
+						th Email
+						th Age
+				tbody
+					each user, i in users
+						tr
+							td=user.name
+							td=user.email
+							td=user.age
+							td
+								input.btn.btn-danger(type='button', value='Delete Row')
+			script(type='text/javascript', src='javascripts/jquery.min.js')
+			script(type='text/javascript', src='javascripts/users.js')
+			script(type='text/javascript', src='javascripts/bootstrap.min.js')
