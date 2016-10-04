@@ -1,4 +1,8 @@
 $(document).ready(function () {
+    $(".delete-item").click(function(){
+        var row_id = $(this).parents('tr').find('input:hidden').val();
+        console.log("row_id: " + row_id);
+    });
     $('#user-submit').click(function () {
         var payload = {
             name: $('#user-name').val(),
