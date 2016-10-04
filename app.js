@@ -54,7 +54,6 @@ app.post('/users', function (req, res) {
     );
 });
 
-
 //delete
 app.post('/:id', function (req, res) {
     var id = req.params.id;
@@ -70,7 +69,6 @@ app.post('/:id', function (req, res) {
             status  : 200,
             success : 'Updated Successfully'
         }
-
         res.end(JSON.stringify(response));
     })
 });

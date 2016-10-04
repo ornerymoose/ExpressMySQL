@@ -24,7 +24,6 @@ $(document).ready(function () {
         var tr = $(this).closest('tr');
         var id = $(this).parents('tr').find('input:hidden').val();
         console.log("row_id: " + id);
-        //console.log("info var: " + info);
         $.ajax({
             datatype: "json", 
             type: "POST",
