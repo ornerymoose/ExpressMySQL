@@ -1,6 +1,7 @@
 html
 	head
 		title CRUD Application with AJAX
+		link(href='stylesheets/main.css', rel='stylesheet')
 		link(href='stylesheets/bootstrap.min.css', rel='stylesheet')
 		link(href='stylesheets/bootstrap-editable.css', rel='stylesheet')
 	body
@@ -8,28 +9,27 @@ html
 			h3 Enter a user's info to enter into the database:
 			input#user-name.form-control(type='text', name='name', placeholder='Enter Name')
 			br
-			br
 			input#user-email.form-control(type='text', name='email', placeholder='Enter Email')
-			br
 			br
 			input#user-age.form-control(type='text', name='age', placeholder='Enter Age')
 			br
-			br
+			p.info(style='border: 1px solid red; height: 20px; width: 250px;')
 			input#user-submit.btn.btn-default(type='submit')
-			p#output
-			p#latest_output
-			p.test-div(style='border: 1px solid red; height: 50px; width: 50px; background-color: yellow; display: none')
-			table(class='table')
+			br
+			br
+			table(class='table table-striped table-bordered')
 				thead
 					tr
 						th Name
 						th Email
 						th Age
+						th Delete Item?
 				tbody
 					each user, i in users
 						tr
 							input(type='hidden', value=user.pkid)
-							td=user.name
+							td
+								span.xedit(id="#{user.pkid}")=user.name
 							td=user.email
 							td=user.age
 							td

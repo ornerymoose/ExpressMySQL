@@ -47,11 +47,12 @@ app.get('/', function(req, res){
 
 //create
 app.post('/users', function (req, res) {
-    connection.query('insert into users (name, email, age) values ("' + req.body.name + '", "' + req.body.email + '", "' + req.body.age + '")' , function (err, result) {
-            if (err) throw err;
-            res.send('User added to database with the following ID: ' + result.insertId);
-        }
-    );
+    connection.query("insert into users set ?", req.body, function(err, results){
+        if (err) throw err;
+        req.body.id = results.insertId;
+        console.log("Inserted! ====> " + req.body.id);
+        res.send(req.body);
+    })     
 });
 
 //delete
@@ -67,7 +68,7 @@ app.post('/:id', function (req, res) {
         console.log('Deleted ' + result.affectedRows + ' row');
         var response = {
             status  : 200,
-            success : 'Updated Successfully'
+            success : 'Deleted Successfully'
         }
         res.end(JSON.stringify(response));
     })
