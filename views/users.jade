@@ -1,9 +1,9 @@
 html
 	head
-		title Node.js CRUD Application with AJAX
+		title CRUD Application with AJAX
+		link(href='stylesheets/main.css', rel='stylesheet')
 		link(href='stylesheets/bootstrap.min.css', rel='stylesheet')
 		link(href='stylesheets/bootstrap-editable.css', rel='stylesheet')
-		link(href='stylesheets/main.css', rel='stylesheet')
 	body
 		.container
 			h3 Enter a user's info to enter into the database:
@@ -35,6 +35,6 @@ html
 							td
 								input.delete-item.btn.btn-danger(type='button', value='Delete Row')
 			script(type='text/javascript', src='javascripts/jquery.min.js')
+			script(type='text/javascript', src='javascripts/users.js')
 			script(type='text/javascript', src='javascripts/bootstrap.min.js')
 			script(type='text/javascript', src='javascripts/bootstrap-editable.min.js')
-			script(type='text/javascript', src='javascripts/users.js')
