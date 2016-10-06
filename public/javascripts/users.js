@@ -1,4 +1,5 @@
-$(document).ready(function () {
+$(document).ready(function(){
+    $("#user-name").focus();
     $('.xedit').editable({
         tpl: '<input type="text" name="name" class="name">'
     });
