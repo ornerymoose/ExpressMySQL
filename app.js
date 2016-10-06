@@ -6,7 +6,7 @@ var app = express();
 var mysql   = require('mysql');
 var bodyParser = require('body-parser');
 
-app.use(bodyParser.urlencoded({ extended:false }));
+app.use(bodyParser.urlencoded({ extended:true }));
 app.use(bodyParser.json());
 
 var connection = mysql.createConnection({
@@ -72,6 +72,13 @@ app.post('/:id', function (req, res) {
         }
         res.end(JSON.stringify(response));
     })
+});
+
+app.post('/update/:id/:name', function (req, res) {
+    connection.query('UPDATE users SET name = ? WHERE pkid = ?',[req.params.name, req.params.id], function(err, result){
+        console.log("req.body.name: " + req.params.name);
+        res.send(req.body);
+    });
 });
 
 app.listen(3000);
