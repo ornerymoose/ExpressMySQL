@@ -1,6 +1,4 @@
 $(document).ready(function () {
-    // $.fn.editable.defaults.mode = 'inline';
-    // $.fn.editable.defaults.send = "always";
     $('.xedit').editable({
         tpl: '<input type="text" name="name" class="name">'
     });
@@ -28,6 +26,7 @@ $(document).ready(function () {
             processData: false,
             data: JSON.stringify(payload),
             success: function(result){ 
+                $("#user-name, #user-email, #user-age").val("");
                 var deleteIcon = "<input type='button' value='Delete Row' id='"+result.id+"' class='delete-item btn btn-danger'/>";
                 var newRow = "<tr>";
                 newRow += "<td>"+payload.name+"</td>";
